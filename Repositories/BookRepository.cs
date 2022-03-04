@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace LibApp.Repositories 
 {
@@ -18,7 +19,7 @@ namespace LibApp.Repositories
 
         public IEnumerable<Book> GetBooks()
         {
-            return _context.Books;
+            return _context.Books.Include(b => b.Genre);
         }
         public Book GetBookById(int id) => _context.Books.Find(id);
         public void AddBook(Book book) => _context.Books.Add(book);
